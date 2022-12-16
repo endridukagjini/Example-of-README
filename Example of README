@@ -1,0 +1,17 @@
+#hclustering
+?mtcars
+dat=mtcars
+pmatrix=scale(dat)
+d=dist(pmatrix)
+c=hclust(d,method="ward.D2")
+hclust
+plot(c)
+rect.hclust(c,2)
+groups=cutree(c,k=2)
+table(mtcars$vs,groups)
+totwinss=c()
+for (k in 1:10){
+  k_cl=kmeans(pmatrix,k)
+  totwinss[k]=k_cl$tot.within
+}  
+plot(1:10,totwinss)
