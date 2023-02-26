@@ -1,0 +1,26 @@
+#correlation
+tablered=read.table(file.choose(),header=T,sep=";",nrows=-1)
+tablered
+class(tablered)
+View(tablered)
+str(tablered)
+summary(tablered)
+View(tablered[tablered$quality>=8,])
+cor(tablered)
+cor(tablered$alcohol,tablered$quality)
+x<-tablered$alcohol
+y<-tablered$quality
+plot(x,y)
+best<-tablered[tablered$quality==8,c(11,12)]
+model<-lm(y~x,data=lm_data)
+summary(model)
+abline(1.87497,0.36084,col=2)
+anova(model)
+X_new<-c(9.4,9.6)
+Y_predict<-predict(model,data.frame(x=X_new))
+Y_pred
+
+#linear regression2
+model2<-lm(quality~.,data=tablered)
+summary(model2)
+model2<-lm(quality~fixed.acidity+volatile.acidity+citric.acid+residual.sugar+chlorides+free.sulfun.dioxide+total.sulful.dioxide+density+pH+sulphates+alcohol,data=tablered)
